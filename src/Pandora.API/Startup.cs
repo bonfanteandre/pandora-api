@@ -26,6 +26,7 @@ namespace Pandora.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(Startup));
+            services.AddCors();
             services.AddControllers();
             services.AddApiVersioning();
             services.AddDbContext(Configuration);
@@ -43,6 +44,12 @@ namespace Pandora.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(builder => 
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
 
             app.UseRouting();
 
