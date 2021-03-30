@@ -84,14 +84,14 @@ namespace Pandora.Core.Services
             return await _plansRepository.AllAsync();
         }
 
-        public Task<ICollection<Plan>> FilterAndPaged(int skip, int take, string name)
+        public async Task<ICollection<Plan>> FilterAndPaged(int skip, int take, string name)
         {
             if (name == null)
             {
                 name = string.Empty;
             }
 
-            return _plansRepository.FilterAsync(
+            return await _plansRepository.FilterAsync(
                 skip,
                 take,
                 p => p.Name.ToLower().Contains(name),
