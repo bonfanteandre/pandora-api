@@ -13,6 +13,7 @@ namespace Pandora.API.Extensions
         public static void AddServices(this IServiceCollection services)
         {
             services.AddTransient<IPlansService, PlansService>();
+            services.AddTransient<IPaymentMethodsService, PaymentMethodsService>();
         }
     }
 }

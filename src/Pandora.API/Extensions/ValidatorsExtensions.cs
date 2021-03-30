@@ -13,6 +13,7 @@ namespace Pandora.API.Extensions
         public static void AddValidators(this IServiceCollection services)
         {
             services.AddTransient<IPlanValidator, PlanValidator>();
+            services.AddTransient<IPaymentMethodValidator, PaymentMethodValidator>();
         }
     }
 }
