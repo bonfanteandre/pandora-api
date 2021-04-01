@@ -13,6 +13,7 @@ namespace Pandora.API.Mapping
         public ResourceToEntityProfile()
         {
             CreateMap<PlanResource, Plan>();
+            CreateMap<PaymentMethodResource, PaymentMethod>();
         }
     }
 }

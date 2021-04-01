@@ -10,6 +10,8 @@ namespace Pandora.Infrastructure.Context
     {
         public DbSet<Plan> Plans { get; set; }
 
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
+
         public PandoraContext(DbContextOptions options) : base(options)
         {
         }
