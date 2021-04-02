@@ -26,6 +26,11 @@ namespace Pandora.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] PlanResource planResource)
         {
+            if (planResource == null)
+            {
+                planResource = new PlanResource();
+            }
+
             var plan = _mapper.Map<PlanResource, Plan>(planResource);
             var result = await _plansService.AddAsync(plan);
 
@@ -40,6 +45,11 @@ namespace Pandora.API.Controllers
         [HttpPut, Route("{id:guid}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] PlanResource planResource)
         {
+            if (planResource == null)
+            {
+                planResource = new PlanResource();
+            }
+
             var plan = _mapper.Map<PlanResource, Plan>(planResource);
             var result = await _plansService.UpdateAsync(id, plan);
 

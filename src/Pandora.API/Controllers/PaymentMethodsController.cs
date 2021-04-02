@@ -26,6 +26,11 @@ namespace Pandora.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] PaymentMethodResource paymentMethodResource)
         {
+            if (paymentMethodResource == null)
+            {
+                paymentMethodResource = new PaymentMethodResource();
+            }
+
             var paymentMethod = _mapper.Map<PaymentMethodResource, PaymentMethod>(paymentMethodResource);
             var result = await _paymentMethodsService.AddAsync(paymentMethod);
 
@@ -40,6 +45,11 @@ namespace Pandora.API.Controllers
         [HttpPut, Route("{id:guid}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] PaymentMethodResource paymentMethodResource)
         {
+            if (paymentMethodResource == null)
+            {
+                paymentMethodResource = new PaymentMethodResource();
+            }
+
             var paymentMethod = _mapper.Map<PaymentMethodResource, PaymentMethod>(paymentMethodResource);
             var result = await _paymentMethodsService.UpdateAsync(id, paymentMethod);
 
