@@ -14,6 +14,8 @@ namespace Pandora.API.Extensions
         {
             services.AddTransient<IPlanValidator, PlanValidator>();
             services.AddTransient<IPaymentMethodValidator, PaymentMethodValidator>();
+            services.AddTransient<ICustomerValidator, CustomerValidator>();
+            services.AddTransient<IAddressValidator, AddressValidator>();
         }
     }
 }

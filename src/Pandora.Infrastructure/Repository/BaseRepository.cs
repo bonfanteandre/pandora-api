@@ -13,7 +13,7 @@ namespace Pandora.Infrastructure.Repository
 {
     public abstract class BaseRepository<T> : IRepository<T> where T : Entity
     {
-        private readonly PandoraContext _context;
+        protected readonly PandoraContext _context;
 
         public BaseRepository(PandoraContext context)
         {
@@ -37,7 +37,7 @@ namespace Pandora.Infrastructure.Repository
             return Task.CompletedTask;
         }
 
-        public async Task<T> FindAsync(Guid id)
+        public virtual async Task<T> FindAsync(Guid id)
         {
             return await _context.Set<T>().FindAsync(id);
         }

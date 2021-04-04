@@ -14,6 +14,8 @@ namespace Pandora.API.Mapping
         {
             CreateMap<PlanResource, Plan>();
             CreateMap<PaymentMethodResource, PaymentMethod>();
+            CreateMap<CustomerResource, Customer>();
+            CreateMap<AddressResource, Address>();
         }
     }
 }
