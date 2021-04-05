@@ -4,6 +4,8 @@ using Pandora.Core.Entities;
 using Pandora.Infrastructure.Context;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +22,17 @@ namespace Pandora.Infrastructure.Repository
             return await _context.Customers
                 .Include(c => c.Addresses)
                 .FirstOrDefaultAsync(c => c.Id.Equals(id));
+        }
+
+        public override async Task<ICollection<Customer>> FilterAsync(int skip, int take, Expression<Func<Customer, bool>> where, Expression<Func<Customer, object>> orderBy)
+        {
+            return await _context.Customers
+                .Include(c => c.Plan)
+                .OrderBy(orderBy)
+                .Where(where)
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Pandora.API.Resources
     {
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
-        public Guid PlanId { get; set; }
+        public Guid? PlanId { get; set; }
     }
 }

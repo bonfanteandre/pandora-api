@@ -47,7 +47,7 @@ namespace Pandora.Infrastructure.Repository
             return await _context.Set<T>().ToListAsync();
         }
 
-        public async Task<ICollection<T>> FilterAsync(
+        public virtual async Task<ICollection<T>> FilterAsync(
             int skip, 
             int take, 
             Expression<Func<T, bool>> where,

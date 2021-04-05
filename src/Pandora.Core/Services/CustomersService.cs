@@ -29,6 +29,12 @@ namespace Pandora.Core.Services
 
         public async Task<OperationResult> AddAsync(Customer customer)
         {
+            // TODO: PlanId should be null already
+            if (customer.PlanId == Guid.Empty)
+            {
+                customer.RemovePlan();
+            }
+
             var validationResult = _validator.Validate(customer);
 
             if (!validationResult.IsValid)

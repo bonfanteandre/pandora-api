@@ -102,5 +102,10 @@ namespace Pandora.Core.Services
         {
             return await _plansRepository.FindAsync(id);
         }
+
+        public async Task<ICollection<Plan>> GetAll()
+        {
+            return await _plansRepository.AllAsync();
+        }
     }
 }

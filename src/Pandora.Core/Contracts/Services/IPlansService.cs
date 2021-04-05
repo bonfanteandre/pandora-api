@@ -9,5 +9,6 @@ namespace Pandora.Core.Contracts.Services
     public interface IPlansService : IService<Plan>
     {
         Task<ICollection<Plan>> FilterAndPaged(int skip, int take, string name);
+        Task<ICollection<Plan>> GetAll();
     }
 }

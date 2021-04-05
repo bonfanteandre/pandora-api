@@ -8,7 +8,7 @@ namespace Pandora.Core.Entities
     {
         public string Name { get; private set; }
         public string PhoneNumber { get; private set; }
-        public Guid PlanId { get; private set; }
+        public Guid? PlanId { get; private set; }
         public Plan Plan { get; private set; }
         public ICollection<Address> Addresses { get; private set; }
 
@@ -31,6 +31,12 @@ namespace Pandora.Core.Entities
             Name = customer.Name;
             PhoneNumber = customer.PhoneNumber;
             PlanId = customer.PlanId;
+        }
+
+        public void RemovePlan()
+        {
+            PlanId = null;
+            Plan = null;
         }
     }
 }

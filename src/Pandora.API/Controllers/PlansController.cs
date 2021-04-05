@@ -102,5 +102,18 @@ namespace Pandora.API.Controllers
 
             return Ok(plan);
         }
+
+        [HttpGet, Route("all")]
+        public async Task<IActionResult> All()
+        {
+            var plans = await _plansService.GetAll();
+
+            if (plans == null || plans.Count == 0)
+            {
+                return NoContent();
+            }
+
+            return Ok(plans);
+        }
     }
 }
