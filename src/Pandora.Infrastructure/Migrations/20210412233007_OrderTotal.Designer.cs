@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Pandora.Infrastructure.Context;
 
 namespace Pandora.Infrastructure.Migrations
 {
     [DbContext(typeof(PandoraContext))]
-    partial class PandoraContextModelSnapshot : ModelSnapshot
+    [Migration("20210412233007_OrderTotal")]
+    partial class OrderTotal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

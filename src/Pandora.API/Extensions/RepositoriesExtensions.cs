@@ -17,6 +17,8 @@ namespace Pandora.API.Extensions
             services.AddTransient<IAddressesRepository, AddressesRepository>();
             services.AddTransient<ICustomersRepository, CustomersRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IOrderItemRepository, OrderItemRepository>();
         }
     }
 }
