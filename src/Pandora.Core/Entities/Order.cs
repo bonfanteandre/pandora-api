@@ -10,6 +10,8 @@ namespace Pandora.Core.Entities
         public DateTime CreatedOn { get; private set; }
         public Guid CustomerId { get; private set; }
         public Customer Customer { get; private set; }
+        public Guid AddressId { get; private set; }
+        public Address Address { get; private set; }
         public Guid PaymentMethodId { get; private set; }
         public PaymentMethod PaymentMethod { get; private set; }
         public DateTime DeliverAt { get; private set; }
@@ -27,6 +29,7 @@ namespace Pandora.Core.Entities
         public void Update(Order order)
         {
             CustomerId = order.CustomerId;
+            AddressId = order.AddressId;
             PaymentMethodId = order.PaymentMethodId;
             DeliverAt = order.DeliverAt;
             Observations = order.Observations;
