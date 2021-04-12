@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace Pandora.API.Controllers
 {
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/addresses")]
     public class AddressesController : ControllerBase
     {
         private readonly IAddressesService _addressesService;
