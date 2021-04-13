@@ -8,6 +8,7 @@ namespace Pandora.API.Resources
     public class OrderResource
     {
         public Guid CustomerId { get; set; }
+        public Guid AddressId { get; set; }
         public Guid PaymentMethodId { get; set; }
         public DateTime DeliverAt { get; set; }
         public string Observations { get; set; }

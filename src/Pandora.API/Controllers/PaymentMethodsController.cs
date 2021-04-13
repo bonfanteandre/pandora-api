@@ -90,6 +90,19 @@ namespace Pandora.API.Controllers
             return Ok(paymentMethods);
         }
 
+        [HttpGet, Route("all")]
+        public async Task<IActionResult> GetAll()
+        {
+            var paymentMethods = await _paymentMethodsService.ListAsync();
+
+            if (paymentMethods == null || paymentMethods.Count == 0)
+            {
+                return NoContent();
+            }
+
+            return Ok(paymentMethods);
+        }
+
         [HttpGet, Route("{id:guid}")]
         public async Task<IActionResult> Find([FromRoute] Guid id)
         {

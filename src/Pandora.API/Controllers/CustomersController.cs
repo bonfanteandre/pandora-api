@@ -90,6 +90,19 @@ namespace Pandora.API.Controllers
             return Ok(customers);
         }
 
+        [HttpGet, Route("all")]
+        public async Task<IActionResult> GetAll()
+        {
+            var customers = await _customersService.ListAsync();
+
+            if (customers == null || customers.Count == 0)
+            {
+                return NoContent();
+            }
+
+            return Ok(customers);
+        }
+
         [HttpGet, Route("{id:guid}")]
         public async Task<IActionResult> Find([FromRoute] Guid id)
         {
