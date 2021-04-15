@@ -33,5 +33,10 @@ namespace Pandora.Infrastructure.Repository
             _context.OrderItems.Remove(orderItem);
             return Task.CompletedTask;
         }
+
+        public async Task<OrderItem> FindAsync(Guid id)
+        {
+            return await _context.OrderItems.FindAsync(id);
+        }
     }
 }

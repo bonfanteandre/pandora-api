@@ -42,7 +42,7 @@ namespace Pandora.Infrastructure.Repository
             return await _context.Set<T>().FindAsync(id);
         }
 
-        public async Task<ICollection<T>> AllAsync()
+        public virtual async Task<ICollection<T>> AllAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }

@@ -49,5 +49,10 @@ namespace Pandora.Core.Entities
         {
             Status = OrderStatus.Canceled;
         }
+
+        public void SetCreatedNow()
+        {
+            CreatedOn = DateTime.UtcNow;
+        }
     }
 }

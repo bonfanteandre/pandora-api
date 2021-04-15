@@ -36,6 +36,7 @@ namespace Pandora.Infrastructure.Repository
             return await _context.Orders
                 .Include(o => o.Customer)
                 .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
                 .FirstOrDefaultAsync(o => o.Id == id);
         }
 

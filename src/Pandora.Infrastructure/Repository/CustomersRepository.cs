@@ -17,6 +17,14 @@ namespace Pandora.Infrastructure.Repository
         {
         }
 
+        public override async Task<ICollection<Customer>> AllAsync()
+        {
+            return await _context.Customers
+                .Include(c => c.Addresses)
+                .OrderBy(c => c.Name)
+                .ToListAsync();
+        }
+
         public override async Task<Customer> FindAsync(Guid id)
         {
             return await _context.Customers

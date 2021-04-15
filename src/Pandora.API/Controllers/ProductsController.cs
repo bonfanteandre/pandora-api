@@ -91,6 +91,19 @@ namespace Pandora.API.Controllers
             return Ok(products);
         }
 
+        [HttpGet("all")]
+        public async Task<IActionResult> GetAll()
+        {
+            var products = await _productService.ListAsync();
+
+            if (products == null || products.Count == 0)
+            {
+                return NoContent();
+            }
+
+            return Ok(products);
+        }
+
         [HttpGet, Route("{id:guid}")]
         public async Task<IActionResult> Find([FromRoute] Guid id)
         {

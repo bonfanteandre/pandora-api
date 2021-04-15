@@ -17,5 +17,11 @@ namespace Pandora.Core.Entities
         {
             SetNewId();
         }
+
+        public void Update(OrderItem item)
+        {
+            Amount = item.Amount;
+            Price = item.Price;
+        }
     }
 }

@@ -34,6 +34,8 @@ namespace Pandora.Core.Services
                 return new OperationResult(false, order, errors);
             }
 
+            order.SetCreatedNow();
+
             await _orderRepository.AddAsync(order);
             await _unitOfWork.CommitAsync();
 

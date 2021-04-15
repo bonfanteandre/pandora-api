@@ -11,5 +11,6 @@ namespace Pandora.Core.Contracts.Repositories
         Task AddAsync(OrderItem orderItem);
         Task UpdateAsync(OrderItem orderItem);
         Task RemoveAsync(OrderItem orderItem);
+        Task<OrderItem> FindAsync(Guid id);
     }
 }
