@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Pandora.Core.Entities
@@ -22,7 +23,6 @@ namespace Pandora.Core.Entities
         public Order()
         {
             SetNewId();
-            Items = new List<OrderItem>();
             Status = OrderStatus.Created;
         }
 
@@ -53,6 +53,16 @@ namespace Pandora.Core.Entities
         public void SetCreatedNow()
         {
             CreatedOn = DateTime.UtcNow;
+        }
+
+        public void SetTotal()
+        {
+            if (Items == null)
+            {
+                Items = new List<OrderItem>();
+            }
+
+            Total = Items.Sum(i => i.Price);
         }
     }
 }

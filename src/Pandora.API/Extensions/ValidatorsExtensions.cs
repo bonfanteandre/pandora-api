@@ -18,6 +18,7 @@ namespace Pandora.API.Extensions
             services.AddTransient<IAddressValidator, AddressValidator>();
             services.AddTransient<IProductValidator, ProductValidator>();
             services.AddTransient<IOrderValidator, OrderValidator>();
+            services.AddTransient<IOrderItemValidator, OrderItemValidator>();
         }
     }
 }

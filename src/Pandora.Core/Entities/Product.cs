@@ -10,11 +10,6 @@ namespace Pandora.Core.Entities
         public int Stock { get; private set; }
         public decimal Cost { get; private set; }
 
-        public Product()
-        {
-            SetNewId();
-        }
-
         public Product(string name, int stock, decimal cost)
         {
             SetNewId();

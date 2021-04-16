@@ -38,5 +38,10 @@ namespace Pandora.Infrastructure.Repository
         {
             return await _context.OrderItems.FindAsync(id);
         }
+
+        public void Update(OrderItem orderItem)
+        {
+            _context.OrderItems.Update(orderItem);
+        }
     }
 }
