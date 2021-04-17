@@ -16,12 +16,18 @@ namespace Pandora.Core.Services
         private readonly IOrderRepository _orderRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IOrderValidator _orderValidator;
+        private readonly IStockService _stockService;
 
-        public OrderService(IOrderRepository orderRepository, IUnitOfWork unitOfWork, IOrderValidator orderValidator)
+        public OrderService(
+            IOrderRepository orderRepository, 
+            IUnitOfWork unitOfWork, 
+            IOrderValidator orderValidator,
+            IStockService stockService)
         {
             _orderRepository = orderRepository;
             _unitOfWork = unitOfWork;
             _orderValidator = orderValidator;
+            _stockService = stockService;
         }
 
         public async Task<OperationResult> AddAsync(Order order)
@@ -124,6 +130,14 @@ namespace Pandora.Core.Services
             }
 
             order.Cancel();
+
+            if (order.Items != null && order.Items.Count > 0)
+            {
+                foreach (var item in order.Items)
+                {
+                    await _stockService.IncrementStock(item.ProductId, item.Amount);
+                }
+            }
 
             await _orderRepository.UpdateAsync(order);
             await _unitOfWork.CommitAsync();

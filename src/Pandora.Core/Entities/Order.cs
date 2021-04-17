@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pandora.Core.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace Pandora.Core.Entities
     public class Order : Entity
     {
         public OrderStatus Status { get; private set; }
+        public string StatusDescription => Status.ToDescription();
         public DateTime CreatedOn { get; private set; }
         public Guid CustomerId { get; private set; }
         public Customer Customer { get; private set; }
