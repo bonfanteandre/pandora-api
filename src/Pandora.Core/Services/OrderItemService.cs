@@ -17,17 +17,20 @@ namespace Pandora.Core.Services
         private readonly IOrderItemValidator _orderItemValidator;
         private readonly IOrderRepository _orderRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IStockService _stockService;
 
         public OrderItemService(
             IOrderItemRepository orderItemRepository,
             IOrderItemValidator orderItemValidator,
             IOrderRepository orderRepository,
-            IUnitOfWork unitOfWork)
+            IUnitOfWork unitOfWork, 
+            IStockService stockService)
         {
             _orderItemRepository = orderItemRepository;
             _unitOfWork = unitOfWork;
             _orderRepository = orderRepository;
             _orderItemValidator = orderItemValidator;
+            _stockService = stockService;
         }
 
         public async Task<OperationResult> AddAsync(OrderItem item)
@@ -41,6 +44,7 @@ namespace Pandora.Core.Services
             }
 
             await _orderItemRepository.AddAsync(item);
+            await _stockService.DecrementStock(item.ProductId, item.Amount);
             await _unitOfWork.CommitAsync();
 
             await UpdateOrderTotal(item.OrderId);
@@ -51,6 +55,9 @@ namespace Pandora.Core.Services
         public async Task<OperationResult> UpdateAsync(Guid id, OrderItem item)
         {
             var itemToUpdate = await _orderItemRepository.FindAsync(id);
+
+            await _stockService.IncrementStock(itemToUpdate.ProductId, itemToUpdate.Amount);
+
             itemToUpdate.Update(item);
 
             var validationResult = _orderItemValidator.Validate(itemToUpdate);
@@ -62,6 +69,7 @@ namespace Pandora.Core.Services
             }
 
             await _orderItemRepository.UpdateAsync(itemToUpdate);
+            await _stockService.DecrementStock(itemToUpdate.ProductId, itemToUpdate.Amount);
             await _unitOfWork.CommitAsync();
 
             await UpdateOrderTotal(item.OrderId);
@@ -80,6 +88,7 @@ namespace Pandora.Core.Services
             }
 
             await _orderItemRepository.RemoveAsync(item);
+            await _stockService.IncrementStock(item.ProductId, item.Amount);
             await _unitOfWork.CommitAsync();
 
             await UpdateOrderTotal(item.OrderId);

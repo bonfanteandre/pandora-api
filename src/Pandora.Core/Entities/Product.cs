@@ -24,5 +24,15 @@ namespace Pandora.Core.Entities
             Stock = product.Stock;
             Cost = product.Cost;
         }
+
+        public void DecrementStock(int amount)
+        {
+            Stock -= amount;
+        }
+
+        public void IncrementStock(int amount)
+        {
+            Stock += amount;
+        }
     }
 }
